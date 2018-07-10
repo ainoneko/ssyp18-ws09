@@ -1,0 +1,89 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Clicker game</title>
+<style type="text/css">
+  .click_image {
+    display: none;
+  }
+
+  #image1 {
+    display: block;
+  }
+ </style>
+<body>
+<script src="./onready.js"></script>
+<script>
+
+// To run when DOM is loaded
+function init() {
+
+    document.getElementById('click_it').addEventListener('click', function() {
+          do_click();
+    });
+
+	// https://stackoverflow.com/questions/155188/trigger-a-button-click-with-javascript-on-the-enter-key-in-a-text-box
+	document.getElementById('click_it').addEventListener("keypress", function(event) {
+	event.preventDefault();
+		if (event.keyCode == 13){
+			// go.click();
+			console.log("!!!");
+			document.getElementById("score").innerHTML = "Cheater!";
+		}
+	});
+}
+
+
+var click_count = 0;
+
+function showStuff(id) {
+    document.getElementById(id).style.display = 'block';
+}
+
+function hideStuff(id) {
+	document.getElementById(id).style.display = 'none';
+}
+
+function do_click(){
+
+  click_count ++;
+
+  
+  document.getElementById("score").innerHTML = click_count;
+
+  if (click_count == 10){
+      hideStuff('image1');
+      showStuff('image2');
+  }
+  if (click_count == 20){
+      hideStuff('image2');
+      showStuff('image3');
+  }
+  if (click_count == 30){
+      hideStuff('image3');
+      showStuff('image4');
+  }
+}
+
+</script>
+
+      <div id="score"></div>
+ 
+
+	  <button id="click_it">Click it: 
+
+        <span class="click_image" id="image1"><img src="images/egg_1.png"></span>
+        <span class="click_image" id="image2"><img src="images/egg_2.png"></span>
+        <span class="click_image" id="image3"><img src="images/egg_3.png"></span>
+
+
+        <span class="click_image" id="image4"><img src="images/chi_2.png"></span>
+        <span class="click_image" id="image5"><img src="images/chi2_50x26_transparent_bg.png"></span>
+        <span class="click_image" id="image6"><img src="images/cat.png"></span>
+    
+    </button>
+ 
+    </div>
+ <script>
+    init();
+</script>
+</body>
